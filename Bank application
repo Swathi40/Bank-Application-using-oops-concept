@@ -1,0 +1,50 @@
+class SBI:
+    ROI=0.07
+    def __init__(self,name,mobno,adhar,pan,bal,pin):
+        self.name   =name
+        self.mobno  =mobno
+        self.aadhar =adhar
+        self.pan    =pan
+        self.bal    =bal
+        self.pin    =pin
+    def details(self):
+        print (f'name     :{self.name}')
+        print (f'mobileno :{self.mobno}')
+        print (f'adhar no :{self.adhar}')
+        print (f'pan no   :{self.pan}')
+        print (f'bal      :{self.bal}')
+    def withdraw(self):
+       if self.checkpin()==self.pin:
+           amount=int(input('enter the amount to withdraw:'))
+           if self.bal>=amount:
+               self.bal-=amount
+               print('Amounted debited successfully...')
+               print(f'Availble balance is {self.bal}')
+           else:
+               print('Insufficient funds...')
+       else:
+           print('Invalid pin')
+    @staticmethod
+    def checkpin():
+        return int(input('enter the 4-digit pin:'))
+    def deposite(self):
+        amount=int(input('enter the amount to deposite:'))
+        self.bal+=amount
+        print('Amount credited successfully...')
+        print(f'Availble balance is {self.bal}')
+    def checkbal(self):
+        if self.checkpin()==self.pin:
+            print(f'Availble balance is {self.bal}')
+        else:
+            print('Inavalid pin')           
+cust1=SBI('Devara',9999999999,123456789123,'ABCD1234',10000,1234)
+cust2=SBI('Bhaira',8888888888,345678912345,'EFGH5678',20000,5678)
+cust1.checkbal() 
+cust2.deposite()
+
+#Output#
+enter the 4-digit pin: 5678
+Inavalid pin
+enter the amount to deposite: 4000
+Amount credited successfully...
+Availble balance is 24000
